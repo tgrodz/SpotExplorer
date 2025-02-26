@@ -1,8 +1,7 @@
-```md
 # SpotExplorer - Interactive Image Allocation in Jetpack Compose
 
-## Screenshots
-<img src="https://i.ibb.co/CKzQ8ZHt/demo-image.png" alt="SpotAllocator Demo" width="600"/>
+
+![SpotAllocator Demo](https://i.postimg.cc/8zYkZDQq/photo-2025-02-26-21-41-43.jpg)
 
 ---
 
@@ -10,19 +9,16 @@
 It is designed for mapping locations, seat allocation, object marking, and other interactive UI components in Android applications.
 
 ## Features
-- Pinch-to-Zoom & Pan – Smooth zooming and panning for image navigation.
-- Double-Tap Zoom – Quickly zoom into a tapped location.
-- Marker Selection & Animation – Select spots with visual feedback.
-- Haptic Feedback – Optional vibration for enhanced user interaction.
-- Dashed Routes – Connect markers with dashed lines.
-- Customizable Overlay & Labels – Optional UI elements for better visibility.
+- **Pinch-to-Zoom & Pan** – Smooth zooming and panning for image navigation.
+- **Double-Tap Zoom** – Quickly zoom into a tapped location.
+- **Marker Selection & Animation** – Select spots with visual feedback.
+- **Haptic Feedback** – Optional vibration for enhanced user interaction.
+- **Dashed Routes** – Connect markers with dashed lines.
+- **Customizable Overlay & Labels** – Optional UI elements for better visibility.
 
 ---
 
 ## Getting Started
-
-### Installation
-Add the `SpotAllocator` function to your Jetpack Compose project.
 
 ### Usage Example
 ```kotlin
@@ -53,8 +49,6 @@ fun MyScreen() {
 | Parameter        | Type             | Default  | Description |
 |-----------------|-----------------|----------|-------------|
 | `imageBitmap`   | `ImageBitmap`    | Required | The image displayed in the background. |
-| `squares`       | `List<SquareInfo>` | `emptyList()` | List of markers on the image. |
-| `selectedSquare` | `SquareInfo?`    | `null`   | The currently selected marker. |
 | `markerSize`    | `Float`          | `80f`    | The size of markers. |
 | `useOverlay`    | `Boolean`        | `false`  | Dark overlay on the image. |
 | `useVibration`  | `Boolean`        | `true`   | Enables haptic feedback on selection. |
@@ -73,7 +67,8 @@ fun MyScreen() {
 4. Handles marker selection and triggers a callback with tap position and selection state.
 5. Supports overlays and route drawing between multiple selected markers.
 
+---
 
 ## License
-This project is licensed under the MIT License – free for personal and commercial use.
-
+This project is licensed under the **MIT License** – free for personal and commercial use.
+```
