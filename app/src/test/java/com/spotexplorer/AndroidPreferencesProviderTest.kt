@@ -20,7 +20,6 @@ class AndroidPreferencesProviderTest {
 
     private lateinit var provider: AndroidPreferencesProvider
 
-
     @Before
     fun setup() {
         val context = ApplicationProvider.getApplicationContext<Context>()
@@ -29,7 +28,6 @@ class AndroidPreferencesProviderTest {
         provider = AndroidPreferencesProvider()
         provider.init()
     }
-
 
     @Test
     fun testUpdateMarkerSize() = runTest {
