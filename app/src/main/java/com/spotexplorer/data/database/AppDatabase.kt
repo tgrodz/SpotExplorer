@@ -35,12 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // Add isSynced column to guard_allocations table
-                database.execSQL("ALTER TABLE guard_allocations ADD COLUMN isSynced INTEGER NOT NULL DEFAULT 0")
-
-                // Create an index for guardAllocationId in allocation_details table
-                database.execSQL("CREATE INDEX IF NOT EXISTS index_allocation_details_guardAllocationId ON allocation_details(guardAllocationId)")
-            }
+                database.execSQL("ALTER TABLE allocations ADD COLUMN isTemp INTEGER NOT NULL DEFAULT 0")
         }
     }
 }
