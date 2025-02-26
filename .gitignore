@@ -1,0 +1,82 @@
+# Ignore all .iml files
+*.iml
+
+# Gradle files
+.gradle/
+**/gradle/
+gradlew
+gradlew.bat
+gradle.properties
+gradle-wrapper.jar
+
+# Local configuration file (should not be shared)
+local.properties
+
+# Android Studio / IntelliJ IDEA settings
+.idea/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/httpRequests
+.idea/codeStyles/
+
+# Build output directories
+/build/
+*/build/
+
+# Captures directory (Android Studio screenshots)
+captures/
+
+# External and native build directories
+.externalNativeBuild/
+.cxx/
+
+# Kotlin-specific directories
+.kotlin/
+.kotlin_cache/
+
+# Node.js dependencies (if using React Native or JS inside Android)
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Flutter-specific directories (if using Flutter in Android)
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+.packages
+
+# MacOS system files
+.DS_Store
+*.swp
+*.swo
+*.swn
+
+# Log files
+*.log
+
+# Coverage reports
+*.ec
+
+# Test results
+/test-results/
+**/test-results/
+
+# Generated JSON model files
+.json/
+
+# Miscellaneous
+*.apk
+*.aab
+*.jar
+*.zip
+*.obb
+*.so
+*.dex
+*.class
+*.keystore
+
