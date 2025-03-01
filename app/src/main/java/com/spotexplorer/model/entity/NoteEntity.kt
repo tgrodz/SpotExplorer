@@ -11,10 +11,10 @@ import java.util.Date
     foreignKeys = [ForeignKey(
         entity = MarkerEntity::class,
         parentColumns = ["id"],
-        childColumns = ["markerId"],
+        childColumns = ["marker_id"],
         onDelete = ForeignKey.CASCADE
     )],
-    indices = [Index(value = ["markerId"])]
+    indices = [Index(value = ["marker_id"])]
 )
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)

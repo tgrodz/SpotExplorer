@@ -10,7 +10,7 @@ data class AllocationWithMarkers(
 
     @Relation(
         parentColumn = "id",
-        entityColumn = "allocationId"
+        entityColumn = "allocation_id"
     )
     val allocationDetails: List<MarkerEntity> = emptyList()
 )

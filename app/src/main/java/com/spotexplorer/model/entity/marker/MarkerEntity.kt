@@ -18,15 +18,15 @@ import com.spotexplorer.model.entity.AllocationEntity
     foreignKeys = [ForeignKey(
         entity = AllocationEntity::class,
         parentColumns = ["id"],
-        childColumns = ["allocationId"],
+        childColumns = ["allocation_id"],
         onDelete = ForeignKey.CASCADE
     )],
-    indices = [Index(value = ["allocationId"])]
+    indices = [Index(value = ["allocation_id"])]
 )
 data class MarkerEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
 
-    @ColumnInfo(name = "allocationId") val allocationId: Int,
+    @ColumnInfo(name = "allocation_id") val allocationId: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "x_point") val xPoint: Float,
     @ColumnInfo(name = "y_point") val yPoint: Float,

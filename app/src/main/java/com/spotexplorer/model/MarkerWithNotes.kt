@@ -9,7 +9,7 @@ data class MarkerWithNotes(
 
     @Relation(
         parentColumn = "id",
-        entityColumn = "markerId"
+        entityColumn = "marker_id"
     )
     val entities: List<NoteEntity>
 )
