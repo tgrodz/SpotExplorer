@@ -8,7 +8,6 @@ import androidx.room.*
 data class AllocationEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val sectionID: Int,
-    val placementUrl: String,
-    val isSynced: Boolean = false
+    val placementUrl: String
 )
 

@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-open class BaseViewModel() : ViewModel() {
+abstract class BaseViewModel() : ViewModel() {
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Log.e("BaseViewModel", "Coroutine exception: ${exception.localizedMessage}", exception)

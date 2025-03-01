@@ -5,9 +5,7 @@ import com.spotexplorer.data.database.AppDatabase
 
 object DatabaseExtractor {
 
-    /**
-     * Logs the schema of the database by printing each table name and its SQL statement.
-     */
+
     fun logDatabaseSchema(database: AppDatabase) {
         try {
             val db = database.openHelper.writableDatabase
@@ -25,18 +23,12 @@ object DatabaseExtractor {
         }
     }
 
-    /**
-     * Logs the data of all tables specified in the list.
-     */
     fun logAllTables(database: AppDatabase) {
         listOf("allocations", "markers", "notes").forEach { tableName ->
             logTableData(database, tableName)
         }
     }
 
-    /**
-     * Logs all data from a specific table.
-     */
     internal fun logTableData(database: AppDatabase, tableName: String) {
         try {
             val db = database.openHelper.writableDatabase
@@ -68,7 +60,6 @@ object DatabaseExtractor {
             Log.e("DB_LOG_ERROR", "Error logging table $tableName: ${e.localizedMessage}", e)
         }
     }
-
 
     class Builder(private val database: AppDatabase) {
         private var shouldLogSchema: Boolean = false

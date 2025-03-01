@@ -84,13 +84,11 @@ fun AllocationScreen(
 
     var showContextMenu by remember { mutableStateOf(false) }
 
-
     // Simulate loading delay
     val isLoading = produceState(initialValue = true) {
         kotlinx.coroutines.delay(600)
         value = false
     }
-
 
     LaunchedEffect(newMarkerPosition) {
         if (newMarkerPosition != null) {

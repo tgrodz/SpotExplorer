@@ -1,3 +1,97 @@
 <resources>
-    <string name="app_name">SpotExplorer</string>
+        <string name="app_name">SpotExplorer</string>
+
+        <!-- Exit Dialog -->
+        <string name="confirmation_required">Confirmation required</string>
+        <string name="exit_dialog_text">Are you sure you want to go back? All unsaved data will be lost.</string>
+        <string name="yes">Yes</string>
+        <string name="no">No</string>
+
+        <!-- Loading -->
+        <string name="loading_text">Uploading...</string>
+
+        <!-- TopAppBar -->
+        <string name="allocation_title">Allocation</string>
+        <string name="menu">Menu</string>
+        <string name="open_settings">Open Settings</string>
+        <string name="clean_selection">Clean selection</string>
+
+        <!-- Screen labels -->
+        <string name="arrangement_screen">AllocationScreen</string>
+        <string name="all_markers_label">All markers: </string>
+        <string name="marker_size_label">Value from Pref. Marking Size: </string>
+
+        <!-- Image details -->
+        <string name="image_information">Image information</string>
+        <string name="image_not_loaded">Image not loaded or details not available.</string>
+
+        <!-- Add Marker Dialog (Russian) -->
+        <string name="add_marker_title">Adding a new marker</string>
+        <string name="position_label">Position: </string>
+        <string name="marker_name_label">Marker name</string>
+        <string name="add_button">Add</string>
+        <string name="cancel_ru">Cancel</string>
+
+        <!-- List of Markers Card -->
+        <string name="name_label">Name: </string>
+        <string name="coordinates_label">X: %s, Y: %s</string>
+        <string name="status_label">Status: </string>
+        <string name="pixel_index_label">Pixel Sequential Index: </string>
+
+        <!-- Toast message when clicking an empty space -->
+        <string name="you_clicked_empty">No marker, empty place</string>
+
+        <!-- Marker Details Dialog (English) -->
+        <string name="marker_details_title">Marker Details</string>
+        <string name="no_marker_found">No Marker Found</string>
+        <string name="cancel_en">Cancel</string>
+        <string name="view_details">View Details</string>
+
+        <!-- Marker Screen UI text -->
+        <string name="header_marker_details">Marker Details</string>
+        <string name="back_description">Back</string>
+        <string name="sequential_number">Sequential Number: </string>
+        <string name="position_y">Position Y: </string>
+        <string name="position_x">Position X: </string>
+        <string name="status">Status: </string>
+        <string name="available_features">Available Features</string>
+        <string name="free">Free</string>
+        <string name="busy">Busy</string>
+        <string name="view_reviews">View Reviews</string>
+        <string name="confirm">Confirm</string>
+        <string name="delete_marker">Delete Marker</string>
+        <string name="confirm_deletion_title">Confirm Deletion</string>
+        <string name="confirm_deletion_text">Are you sure you want to delete this marker? This action cannot be undone.</string>
+        <string name="delete">Delete</string>
+        <string name="cancel">Cancel</string>
+
+        <!-- Checkbox labels -->
+        <string name="checkbox_public_transport">Public transport nearby</string>
+        <string name="checkbox_furniture">Furniture</string>
+        <string name="checkbox_balcony">Balcony</string>
+
+        <!-- Note UI text -->
+        <string name="note_header">Note</string>
+        <string name="close_button">Close</string>
+        <string name="no_data">No data</string>
+        <string name="new_note_label">New Note</string>
+        <string name="note_prefix">Note: </string>
+
+        <!-- Settings UI text -->
+        <string name="settings_title">Settings</string>
+        <string name="back_button_description">Back</string>
+        <string name="marker_size_title">Marker size</string>
+        <string name="small_button">Small</string>
+        <string name="medium_button">Medium</string>
+        <string name="large_button">Large</string>
+        <string name="selected_marker_size">Selected size: %d px</string>
+        <string name="haptic_effect_title">Haptic effect (vibration)</string>
+        <string name="draw_route_title">Connecting line between markers</string>
+        <string name="image_darker_title">Enable the image darker</string>
+        <string name="enable_animation_title">Enable animation</string>
+        <string name="animation_option">Animation option: %d</string>
+        <string name="show_text_title">Show text for markers</string>
+        <string name="marker_size_log">Marker size: %d px</string>
+
+
 </resources>

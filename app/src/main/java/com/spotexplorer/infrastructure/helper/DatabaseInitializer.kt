@@ -5,13 +5,7 @@ import com.spotexplorer.data.database.AppDatabase
 import com.spotexplorer.model.entity.AllocationEntity
 import com.spotexplorer.model.entity.marker.MarkerEntity
 
-
 object DatabaseInitializer {
-
-    /**
-     * Initializes the database with a list of markers.
-     * If needed, it creates an allocation entry and converts each marker with the allocationId.
-     */
     suspend fun initializeMarkersByAllocation(database: AppDatabase) {
         val allocationDao = database.allocationDao()
         val markerDao = database.markerDao()
@@ -39,10 +33,6 @@ object DatabaseInitializer {
         markerDao.insertMarkers(markerEntities)
     }
 
-    /**
-     * Inserts a list of notes into the database.
-     * Only inserts notes that are associated with existing markers.
-     */
     suspend fun initializeNotes(database: AppDatabase) {
         val noteDao = database.noteDao()
         val markerDao = database.markerDao()

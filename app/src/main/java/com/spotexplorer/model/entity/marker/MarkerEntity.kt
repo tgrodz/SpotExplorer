@@ -4,6 +4,14 @@ import androidx.compose.runtime.Stable
 import androidx.room.*
 import com.spotexplorer.model.entity.AllocationEntity
 
+
+/**
+ * The MarkerEntity model represents a marker in the application.
+ *
+ * This is a rich model, meaning an object that not only stores data but also contains business logic.
+ * This approach aligns with the concept of a rich domain model in DDD,
+ * where data and logic are encapsulated together in a single object.
+ */
 @Stable
 @Entity(
     tableName = "markers",
@@ -20,18 +28,17 @@ data class MarkerEntity(
 
     @ColumnInfo(name = "allocationId") val allocationId: Int,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "pixel_x_point") val xPoint: Float,
-    @ColumnInfo(name = "pixel_y_point") val yPoint: Float,
-    @ColumnInfo(name = "pixel_sequential_number_point") val pixelSequentialNumberPoint: Int,
+    @ColumnInfo(name = "x_point") val xPoint: Float,
+    @ColumnInfo(name = "y_point") val yPoint: Float,
+    @ColumnInfo(name = "sequential_number_point") val pixelSequentialNumberPoint: Int,
 
     @ColumnInfo(name = "status") val status: MarkerStatus,
     @ColumnInfo(name = "type") val type: MarkerType,
 
-    @ColumnInfo(name = "hasPublicTransport") val hasPublicTransport: Boolean,
-    @ColumnInfo(name = "hasFurniture") val hasFurniture: Boolean,
-    @ColumnInfo(name = "hasBalcony") val hasBalcony: Boolean,
+    @ColumnInfo(name = "has_public_transport") val hasPublicTransport: Boolean,
+    @ColumnInfo(name = "has_furniture") val hasFurniture: Boolean,
+    @ColumnInfo(name = "has_balcony") val hasBalcony: Boolean,
 
-    val isSynced: Boolean = false
 ) {
     fun getCurrentStatus(): MarkerStatus {
         return if (status == MarkerStatus.RED) {
