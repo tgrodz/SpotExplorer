@@ -1,7 +1,8 @@
 # SpotExplorer - Interactive Image Allocation in Jetpack Compose
 
 
-![SpotAllocator Demo](https://i.postimg.cc/8zYkZDQq/photo-2025-02-26-21-41-43.jpg)
+![SpotAllocator Demo](https://github.com/tgrodz/SpotExplorer/blob/main/screenshot/screen-20250303-100217.gif?raw=true)
+
 
 ---
 
