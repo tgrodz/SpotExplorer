@@ -19,12 +19,14 @@ import java.util.Date
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    @ColumnInfo(name = "marker_id")
     val markerId: Int,
     val title: String,
     val rating: Float,
     val comment: String,
     val timestamp: Date
 )
+
 
 
 

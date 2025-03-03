@@ -20,7 +20,7 @@ interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(entities: List<NoteEntity>)
 
-    @Query("SELECT * FROM notes WHERE markerId = :markerId ORDER BY timestamp DESC")
+    @Query("SELECT * FROM notes WHERE marker_id = :markerId ORDER BY timestamp DESC")
     fun getNotesForMarker(markerId: Int): Flow<List<NoteEntity>>
 
     @Delete

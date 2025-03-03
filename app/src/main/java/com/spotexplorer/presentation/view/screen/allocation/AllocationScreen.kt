@@ -34,6 +34,7 @@ import com.spotexplorer.model.SquareInfo
 import com.spotexplorer.presentation.navigation.Route
 import com.spotexplorer.presentation.view.ui.StockImage
 import com.spotexplorer.presentation.shared.SettingsSharedViewModel
+import com.spotexplorer.presentation.view.component.SpotAllocator
 import com.spotexplorer.presentation.view.ui.theme.AppBackground
 
 

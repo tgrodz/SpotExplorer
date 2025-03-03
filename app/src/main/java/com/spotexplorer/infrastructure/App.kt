@@ -10,6 +10,7 @@ import com.spotexplorer.infrastructure.helper.DatabaseExtractor
 import com.spotexplorer.infrastructure.helper.DatabaseInitializer
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
@@ -36,10 +37,10 @@ class App : Application() {
     }
 
     private val singleThreadDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
-    private val scope = CoroutineScope(singleThreadDispatcher + coroutineExceptionHandler)
+    private val sequentialScope = CoroutineScope(singleThreadDispatcher + coroutineExceptionHandler)
 
     private fun prepareDatabase() {
-        scope.launch {
+        sequentialScope.launch {
             val db = DatabaseProvider.getDatabase()
             if (!PreferencesDataSource.isDatabaseInitialized()) {
                 initializeDatabase(db)

@@ -3,6 +3,32 @@ package com.spotexplorer.infrastructure.helper
 import android.util.Log
 import com.spotexplorer.data.database.AppDatabase
 
+/**
+ * Simple DatabaseExtractor in logs
+ *
+ * The `DatabaseExtractor` class is a helper used to verify that your database schema matches
+ * the expected structure defined in your app.
+ * It directly accesses the underlying SQLite database (via `SupportSQLiteDatabase`),
+ *
+ * However, for more robust and interactive development, it's recommended to use dedicated tools such as:
+ *
+ * Database Inspector:
+ * Allows you to view your Room database in real time.
+ * You can run queries, inspect tables,
+ * and verify that your schema (including columns and data) is correct during debugging.
+ *
+ * Room Testing Library:
+ * Provides testing artifacts (like `Room.inMemoryDatabaseBuilder`) to set up tests for
+ * your database, including migration tests.
+ * This helps you write unit tests to verify that your migrations and schema changes behave as expected.
+ *
+ * DB Browser for SQLite:
+ * Lets you export your database file from your device or emulator and inspect it,
+ * ensuring that the on-disk schema matches your expectations.
+ *
+ * This class serves primarily as a demonstration of
+ * direct access to `SQLiteOpenHelper`-level functionality through `SupportSQLiteDatabase`.
+ */
 object DatabaseExtractor {
 
 

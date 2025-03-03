@@ -6,14 +6,9 @@ import com.spotexplorer.model.entity.NoteEntity
 
 data class MarkerWithNotes(
     @Embedded val marker: MarkerEntity,
-
     @Relation(
         parentColumn = "id",
         entityColumn = "marker_id"
     )
-    val entities: List<NoteEntity>
+    val entities: List<NoteEntity> = emptyList()
 )
-
-
-
-

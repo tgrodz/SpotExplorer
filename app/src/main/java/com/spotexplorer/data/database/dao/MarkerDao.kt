@@ -1,6 +1,7 @@
 package com.spotexplorer.data.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -11,10 +12,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MarkerDao {
 
-    @Query("SELECT * FROM markers WHERE allocationId = :allocationId")
+    @Query("SELECT * FROM markers WHERE allocation_id = :allocationId")
     suspend fun getMarkersByAllocationId(allocationId: Int): List<MarkerEntity>
 
-    @Query("SELECT * FROM markers WHERE allocationId = :allocationId")
+    @Query("SELECT * FROM markers WHERE allocation_id = :allocationId")
     fun getMarkersByAllocationIdFlow(allocationId: Int): Flow<List<MarkerEntity>>
 
     @Query("SELECT * FROM markers")

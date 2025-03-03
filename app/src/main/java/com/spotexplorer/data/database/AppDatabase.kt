@@ -38,4 +38,5 @@ abstract class AppDatabase : RoomDatabase() {
                 database.execSQL("ALTER TABLE allocations ADD COLUMN isTemp INTEGER NOT NULL DEFAULT 0")
         }
     }
+    }
 }

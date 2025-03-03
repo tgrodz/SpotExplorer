@@ -1,10 +1,16 @@
 package com.spotexplorer.presentation
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,16 +34,38 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.core.content.ContextCompat
+import com.spotexplorer.R
+import com.spotexplorer.infrastructure.work.NotifyManager
 import com.spotexplorer.presentation.navigation.AppNavHost
-import com.spotexplorer.presentation.theme.SpotExplorerTheme
+import com.spotexplorer.presentation.view.ui.theme.SpotExplorerTheme
+
 
 class MainActivity : ComponentActivity() {
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            Log.d("MainActivity", "Notification permission granted. Scheduling notifications.")
+           // scheduleNotificationWorker(this)
+            NotifyManager.schedule(this)
+        } else {
+            Log.d("MainActivity", "Notification permission denied. Notifications will not be shown.")
+            Toast.makeText(
+                this,
+                getString(R.string.notification_permission_denied),
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             SpotExplorerTheme {
-
                 var showExitDialog by remember { mutableStateOf(false) }
 
                 BackHandler {
@@ -60,11 +88,27 @@ class MainActivity : ComponentActivity() {
                         }
                     )
                 }
-                }
             }
-
+        }
     }
 
+    override fun onStart() {
+        super.onStart()
+        requestNotificationPermissionIfNeeded()
+    }
+
+    private fun requestNotificationPermissionIfNeeded() {
+        // Request POST_NOTIFICATIONS only on Android 13 (API 33) and above.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+    }
 }
 
 

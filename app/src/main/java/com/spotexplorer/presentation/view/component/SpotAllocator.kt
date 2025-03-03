@@ -1,4 +1,4 @@
-package com.spotexplorer.presentation.view.screen.allocation
+package com.spotexplorer.presentation.view.component
 
 import androidx.compose.runtime.saveable.rememberSaveable
 import android.graphics.Matrix
@@ -212,7 +212,6 @@ fun SpotAllocator(
     }
 }
 
-
 private  fun calculateTargetTranslation(
     selectedSquare: SquareInfo,
     containerWidth: Float,
@@ -229,7 +228,6 @@ private  fun calculateTargetTranslation(
     val targetTranslationY = restrictOffset(rawTargetTranslationY, scale, containerHeight, imageHeight)
     return Pair(targetTranslationX, targetTranslationY)
 }
-
 
 private  fun DrawScope.drawMarkers(
     squares: List<SquareInfo>,
@@ -286,7 +284,6 @@ private  fun DrawScope.drawDashedRoute(squares: List<SquareInfo>, markerSize: Fl
     }
 }
 
-
 private  fun DrawScope.drawGlobalRippleEffect(
     sq: SquareInfo,
     circleCenter: Offset,
@@ -314,7 +311,6 @@ private  fun DrawScope.drawMarkerTriangle(
     }
     drawPath(path = trianglePath, color = Color.White)
 }
-
 
 private  fun DrawScope.drawMarkerLabel(
     labelText: String,
@@ -345,6 +341,47 @@ private  fun DrawScope.drawMarkerLabel(
     drawContext.canvas.nativeCanvas.drawText(labelText, rectCenterX, textBaseline, textPaint)
 }
 
+@Composable
+private fun animateMarkerRadius(
+    transition: InfiniteTransition,
+    initial: Float,
+    target: Float,
+    durationMillis: Int,
+    easing: Easing,
+    repeatMode: RepeatMode,
+    label: String
+): Float {
+    return transition.animateFloat(
+        initialValue = initial,
+        targetValue = target,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis, easing = easing),
+            repeatMode = repeatMode
+        ),
+        label = label
+    ).value
+}
+
+@Composable
+private fun animateMarkerAlpha(
+    transition: InfiniteTransition,
+    initial: Float,
+    target: Float,
+    durationMillis: Int,
+    easing: Easing,
+    repeatMode: RepeatMode,
+    label: String
+): Float {
+    return transition.animateFloat(
+        initialValue = initial,
+        targetValue = target,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis, easing = easing),
+            repeatMode = repeatMode
+        ),
+        label = label
+    ).value
+}
 
 @Composable
 private fun rememberMarkerAnimation(
@@ -354,96 +391,74 @@ private fun rememberMarkerAnimation(
     enableAnimation: Boolean
 ): Pair<Float, Float> {
     val infiniteTransition = rememberInfiniteTransition(label = "Marker Animation")
-    if (!enableAnimation) {
-        return markerSize to 1f
-    }
+    if (!enableAnimation) return markerSize to 1f
+
     return when (animationOption) {
         1 -> {
-            val dynamicRadius = if (isRed) {
-                infiniteTransition.animateFloat(
-                    initialValue = markerSize * 0.8f,
-                    targetValue = markerSize / 2,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(1200, easing = LinearEasing),
-                        repeatMode = RepeatMode.Restart
-                    ), label = "Animation Option 1"
-                ).value
-            } else {
-                infiniteTransition.animateFloat(
-                    initialValue = markerSize / 2,
-                    targetValue = markerSize * 0.8f,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(1200, easing = LinearEasing),
-                        repeatMode = RepeatMode.Restart
-                    ), label = "Animation Option 1"
-                ).value
-            }
-            val dynamicAlpha = if (isRed) {
-                infiniteTransition.animateFloat(
-                    initialValue = 0.6f,
-                    targetValue = 0.9f,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(1500, easing = LinearEasing),
-                        repeatMode = RepeatMode.Restart
-                    ), label = "Animation  Option 1"
-                ).value
-            } else {
-                infiniteTransition.animateFloat(
-                    initialValue = 0.9f,
-                    targetValue = 0.5f,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(1500, easing = LinearEasing),
-                        repeatMode = RepeatMode.Restart
-                    ), label = "Animation  Option 1"
-                ).value
-            }
-            dynamicRadius to dynamicAlpha
+            val initialRadius = if (isRed) markerSize * 0.8f else markerSize / 2
+            val targetRadius = if (isRed) markerSize / 2 else markerSize * 0.8f
+            val radiusAnim = animateMarkerRadius(
+                transition = infiniteTransition,
+                initial = initialRadius,
+                target = targetRadius,
+                durationMillis = 1200,
+                easing = LinearEasing,
+                repeatMode = RepeatMode.Restart,
+                label = "Animation Option 1 - Radius"
+            )
+            val initialAlpha = if (isRed) 0.6f else 0.9f
+            val targetAlpha = if (isRed) 0.9f else 0.5f
+            val alphaAnim = animateMarkerAlpha(
+                transition = infiniteTransition,
+                initial = initialAlpha,
+                target = targetAlpha,
+                durationMillis = 1500,
+                easing = LinearEasing,
+                repeatMode = RepeatMode.Restart,
+                label = "Animation Option 1 - Alpha"
+            )
+            radiusAnim to alphaAnim
         }
         2 -> {
-            val dynamicRadius = if (isRed) {
-                infiniteTransition.animateFloat(
-                    initialValue = markerSize * 1.5f,
-                    targetValue = markerSize / 2,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(750, easing = LinearEasing),
-                        repeatMode = RepeatMode.Restart
-                    ), label = "Animation  Option 2"
-                ).value
-            } else {
-                infiniteTransition.animateFloat(
-                    initialValue = markerSize / 2,
-                    targetValue = markerSize * 1.5f,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(750, easing = LinearEasing),
-                        repeatMode = RepeatMode.Restart
-                    ), label = "Animation Option 2"
-                ).value
-            }
-            val dynamicAlpha = infiniteTransition.animateFloat(
-                initialValue = 0.9f,
-                targetValue = 0.1f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(750, easing = LinearEasing),
-                    repeatMode = RepeatMode.Restart
-                ), label = "Animation Option 2"
-            ).value
-            dynamicRadius to dynamicAlpha
+            val initialRadius = if (isRed) markerSize * 1.5f else markerSize / 2
+            val targetRadius = if (isRed) markerSize / 2 else markerSize * 1.5f
+            val radiusAnim = animateMarkerRadius(
+                transition = infiniteTransition,
+                initial = initialRadius,
+                target = targetRadius,
+                durationMillis = 750,
+                easing = LinearEasing,
+                repeatMode = RepeatMode.Restart,
+                label = "Animation Option 2 - Radius"
+            )
+            val alphaAnim = animateMarkerAlpha(
+                transition = infiniteTransition,
+                initial = 0.9f,
+                target = 0.1f,
+                durationMillis = 750,
+                easing = LinearEasing,
+                repeatMode = RepeatMode.Restart,
+                label = "Animation Option 2 - Alpha"
+            )
+            radiusAnim to alphaAnim
         }
         3 -> {
-            val dynamicRadius = infiniteTransition.animateFloat(
-                initialValue = if (isRed) markerSize * 0.99f else markerSize / 2,
-                targetValue = if (isRed) markerSize / 2 else markerSize * 0.99f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(1150, easing = FastOutSlowInEasing),
-                    repeatMode = RepeatMode.Reverse
-                ), label = "Animation Option 3"
-            ).value
-            dynamicRadius to 0.8f
+            val initialRadius = if (isRed) markerSize * 0.99f else markerSize / 2
+            val targetRadius = if (isRed) markerSize / 2 else markerSize * 0.99f
+            val radiusAnim = animateMarkerRadius(
+                transition = infiniteTransition,
+                initial = initialRadius,
+                target = targetRadius,
+                durationMillis = 1150,
+                easing = FastOutSlowInEasing,
+                repeatMode = RepeatMode.Reverse,
+                label = "Animation Option 3 - Radius"
+            )
+            radiusAnim to 0.8f
         }
         else -> markerSize to 1f
     }
 }
-
 
 private fun getTappedImagePointHelper(
     tapOffset: Offset,

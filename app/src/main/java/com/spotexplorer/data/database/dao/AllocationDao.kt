@@ -19,7 +19,7 @@ interface AllocationDao {
     suspend fun getAllocationById(id: Int): AllocationEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllocation(guardAllocation: AllocationEntity): Long
+    suspend fun insertAllocation(allocation: AllocationEntity): Long
 
     @Transaction
     @Query("SELECT * FROM allocations WHERE id = :id")
@@ -28,12 +28,6 @@ interface AllocationDao {
     @Transaction
     @Query("SELECT * FROM allocations")
     suspend fun getAllGuardAllocationsWithDetails(): List<AllocationWithMarkers>
-
-    @Query("SELECT * FROM allocations WHERE isSynced = 0")
-    suspend fun getUnsyncedAllocations(): List<AllocationEntity>
-
-    @Query("UPDATE allocations SET isSynced = 1 WHERE id = :id")
-    suspend fun markAllocationAsSynced(id: Int)
 
     @Query("DELETE FROM allocations")
     suspend fun deleteAllAllocations()

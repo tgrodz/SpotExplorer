@@ -93,5 +93,7 @@
         <string name="show_text_title">Show text for markers</string>
         <string name="marker_size_log">Marker size: %d px</string>
 
+        <string name="notification_permission_denied">Notification permission denied. You will not receive notifications.</string>
+
 
 </resources>
